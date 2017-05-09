@@ -100,7 +100,7 @@ public class Country {
 	 */
 	@Override
 	public String toString() {
-		return String.format("[%d-%s:%s]", cCode, stateAbb, stateName);
+		return stateName+" "+"("+cCode+" "+stateAbb+")";
 	}
 
 }

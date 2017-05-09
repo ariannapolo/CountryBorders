@@ -1,6 +1,7 @@
 package it.polito.tdp.country;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.country.model.Country;
@@ -32,12 +33,23 @@ public class CountryController {
 
     @FXML
     void doCercaPercorso(ActionEvent event) {
+    	Country destinazione = cmbDestinazione.getValue();
+    	List<Country> percorso = model.getPercorso(destinazione);
+    	txtResult.appendText(percorso.toString());
 
     }
 
     @FXML
     void doCercaraggiungibili(ActionEvent event) {
-
+    	Country partenza = cmbPartenza.getValue();
+    	if(partenza ==null){
+    		txtResult.appendText("Errore: devi selezionare lo stato di partenza");
+    		return;
+    	}
+    	List<Country> raggiungibili = model.getRaggiungibili(partenza);
+    	txtResult.appendText(raggiungibili.toString());
+    	//riempo la seconda tendina
+    	cmbDestinazione.getItems().addAll(raggiungibili);
     }
 
     public void setModel(Model model){
